@@ -25,8 +25,14 @@ class QueQue(discord.Client):
                 args is not None and \
                 not self.queue.full():
             await message.add_reaction(random_emote())
-            for _ in range(0, 100):
+            for _ in range(0, 10):
                 self.queue.put(args)
+        
+        if cmd == f'{P}mqe' and \
+                not self.queue.full():
+            await message.add_reaction(random_emote())
+            for _ in range(0, 10):
+                self.queue.put(random_emote())
 
         if cmd == f'{P}dq' and \
                 not self.queue.empty():
