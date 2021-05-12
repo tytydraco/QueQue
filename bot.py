@@ -6,7 +6,6 @@ import os
 
 TOKEN =     os.getenv('TOKEN')
 P =         '$'
-QUEUE_P =   '-p '
 EMOTES =    ['🐈', '🐱', '😼', '😺', '😸', '😻', '🐅']
 
 def random_emote():
@@ -20,8 +19,7 @@ class QueQue(discord.Client):
                 args is not None and \
                 not self.queue.full():
             await message.add_reaction(random_emote())
-            final_item = f'{QUEUE_P}{args}'
-            self.queue.put(final_item)
+            self.queue.put(args)
 
         if cmd == f'{P}dq' and \
                 not self.queue.empty():
